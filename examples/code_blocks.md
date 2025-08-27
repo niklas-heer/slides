@@ -192,3 +192,11 @@ object Main extends App {
   println("Hello")
 }
 ```
+
+---
+
+## Nushell
+
+```nu
+{message: "Hello, World!"} | get message
+```
