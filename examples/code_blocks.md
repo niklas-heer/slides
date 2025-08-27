@@ -23,7 +23,7 @@ Currently supported languages:
 * `swift`
 * `dart`
 * `v`
-* `nushell`
+* `nu`
 <!-- * `secret` -->
 
 ---

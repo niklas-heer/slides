@@ -28,20 +28,7 @@ echo "Hello from Nushell!"
 Some other content.`,
 		},
 		{
-			name: "Replace nushell language identifier",
-			input: `# Test Slide
-
-` + "```nushell" + `
-[1, 2, 3] | where $it > 1
-` + "```" + ``,
-			expected: `# Test Slide
-
-` + "```bash" + `
-[1, 2, 3] | where $it > 1
-` + "```" + ``,
-		},
-		{
-			name: "Multiple nushell code blocks",
+			name: "Multiple nu code blocks",
 			input: `# Slide 1
 
 ` + "```nu" + `
@@ -52,7 +39,7 @@ echo "First block"
 
 # Slide 2
 
-` + "```nushell" + `
+` + "```nu" + `
 echo "Second block"
 ` + "```" + ``,
 			expected: `# Slide 1
@@ -256,13 +243,8 @@ func TestGetMappedLanguage(t *testing.T) {
 		expected string
 	}{
 		{
-			name:     "Map nu to bash",
+			name:     "Map nu (alternative test)",
 			language: "nu",
-			expected: "bash",
-		},
-		{
-			name:     "Map nushell to bash",
-			language: "nushell",
 			expected: "bash",
 		},
 		{
@@ -305,13 +287,6 @@ func TestProcessNushellCode(t *testing.T) {
 			code:             `{name: "Alice"} | get name`,
 			language:         "nu",
 			expectedCode:     `{name= "Alice"} | get name`,
-			expectedLanguage: "bash",
-		},
-		{
-			name:             "Process nushell code with nushell identifier",
-			code:             `[1, 2, 3] | where $it > 1`,
-			language:         "nushell",
-			expectedCode:     `(1, 2, 3) | grep $_ > 1`,
 			expectedLanguage: "bash",
 		},
 		{

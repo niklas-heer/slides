@@ -99,8 +99,7 @@ func (n *NushellHighlighter) ShouldUsePreprocessing(code string) bool {
 
 // LanguageMapping defines fallback mappings for nushell identifiers
 var LanguageMapping = map[string]string{
-	"nu":      "bash",
-	"nushell": "bash",
+	"nu": "bash",
 }
 
 // GetMappedLanguage returns the mapped language for highlighting,
@@ -114,7 +113,7 @@ func GetMappedLanguage(lang string) string {
 
 // ProcessNushellCode applies preprocessing if needed and returns the language to use
 func ProcessNushellCode(code, language string) (processedCode, highlightLanguage string) {
-	if language == "nu" || language == "nushell" {
+	if language == "nu" {
 		highlighter := NewNushellHighlighter()
 
 		if highlighter.ShouldUsePreprocessing(code) {
@@ -132,7 +131,7 @@ func ProcessNushellCode(code, language string) (processedCode, highlightLanguage
 func PreprocessNushellMarkdown(markdown string) string {
 	// Regular expression to match code blocks with nushell language identifiers
 	// Matches both ```nu and ```nushell
-	nushellCodeBlockRegex := regexp.MustCompile(`(?m)^` + "```(?:nu|nushell)" + `$`)
+	nushellCodeBlockRegex := regexp.MustCompile(`(?m)^` + "```(?:nu)" + `$`)
 
 	// Replace nushell identifiers with bash for better syntax highlighting
 	processed := nushellCodeBlockRegex.ReplaceAllString(markdown, "```bash")
