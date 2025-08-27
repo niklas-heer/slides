@@ -132,6 +132,6 @@ var Languages = map[string]Language{
 	},
 	Nushell: {
 		Extension: "nu",
-		Commands:  cmds{{"nu", "<file>"}},
+		Commands:  cmds{{"nu", "--no-config-file", "<file>"}},
 	},
 }
